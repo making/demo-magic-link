@@ -1,0 +1,18 @@
+services:
+  postgres:
+    image: 'postgres:16-alpine'
+    environment:
+    - 'POSTGRES_DB=mydatabase'
+    - 'POSTGRES_PASSWORD=secret'
+    - 'POSTGRES_USER=myuser'
+    ports:
+    - '5432'
+  sendgrid:
+    image: 'ykanazawa/sendgrid-maildev'
+    environment:
+    - 'SENDGRID_DEV_API_SERVER=:3030'
+    - 'SENDGRID_DEV_API_KEY=SG.xxxxx'
+    - 'SENDGRID_DEV_SMTP_SERVER=127.0.0.1:1025'
+    ports:
+    - '3030:3030'
+    - '1080:1080'

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/style.css" rel="stylesheet"/>
+    <title>Login</title>
+</head>
+<body>
+<div class="container">
+    <div class="header">Login</div>
+    {{#springMacroRequestContext.request.parameterMap.error}}
+        <div class="error-message">{{SPRING_SECURITY_LAST_EXCEPTION}}</div>
+    {{/springMacroRequestContext.request.parameterMap.error}}
+    <form id="ott-form" class="login-form" method="post" action="/ott/generate">
+        <h3 class="header">Request a One-Time Token</h3>
+        <p>
+            <label for="ott-username" class="screenreader">Username</label>
+            <input type="text" class="input-field" id="ott-username" name="username" placeholder="Username" required>
+        </p>
+        <p>
+            or <a id="link-to-sign-up" href="/signup?form">sign up</a>.
+        </p>
+        <!--  This will be automatically made available by Spring Security -->
+        {{#_csrf}}
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        {{/_csrf}}
+        <button class="styled-button" type="submit" form="ott-form">Send Token</button>
+    </form>
+</div>
+</body>
+</html>

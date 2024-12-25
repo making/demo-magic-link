@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>One-Time Token Login</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <link href="/style.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <form class="login-form" action="/login/ott" method="post">
+        <h3 class="header">Please input the token</h3>
+        <p>
+            <label for="token" class="screenreader">Token</label>
+            {{#springMacroRequestContext.request.parameterMap.token}}
+                <input type="text" class="input-field" id="token" name="token"
+                       value="{{.}}"
+                       placeholder="Token"
+                       required="true" autofocus="autofocus"/>
+            {{/springMacroRequestContext.request.parameterMap.token}}
+        </p>
+        <button class="styled-button" type="submit">Sign in</button>
+        <!--  This will be automatically made available by Spring Security -->
+        {{#_csrf}}
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        {{/_csrf}}
+    </form>
+</div>
+</body>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="/style.css" rel="stylesheet"/>
+    <title>Sign up</title>
+</head>
+<body>
+<div class="container">
+    <form id="ott-form" class="login-form" method="post" action="/signup">
+        <h3 class="header">Sign up</h3>
+        <p>
+            <label for="ott-username" class="screenreader">Username</label>
+            <input type="text" class="input-field" id="ott-username" name="username" placeholder="Username" required>
+        </p>
+        <p>
+            <label for="ott-email" class="screenreader">Email</label>
+            <input type="email" class="input-field" id="ott-email" name="email" placeholder="Email" required>
+        </p>
+        <!--  This will be automatically made available by Spring Security -->
+        {{#_csrf}}
+            <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        {{/_csrf}}
+        <button class="styled-button" type="submit" form="ott-form">Register</button>
+    </form>
+</div>
+</body>
+</html>
